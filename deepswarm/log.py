@@ -59,27 +59,32 @@ class Log:
         cls.info(message.center(80, '-'), options)
 
     @classmethod
-    def debug(cls, message, options=[Fore.CYAN]):
+    def debug(cls, message, options=None):
+        options = [Fore.CYAN] if options is None else options
         formated_message = cls.create_message(message, options)
         cls.logger.debug(formated_message)
 
     @classmethod
-    def info(cls, message, options=[Fore.GREEN]):
+    def info(cls, message, options=None):
+        options = [Fore.GREEN] if options is None else options
         formated_message = cls.create_message(message, options)
         cls.logger.info(formated_message)
 
     @classmethod
-    def warning(cls, message, options=[Fore.YELLOW]):
+    def warning(cls, message, options=None):
+        options = [Fore.YELLOW] if options is None else options
         formated_message = cls.create_message(message, options)
         cls.logger.warning(formated_message)
 
     @classmethod
-    def error(cls, message, options=[Fore.MAGENTA]):
+    def error(cls, message, options=None):
+        options = [Fore.MAGENTA] if options is None else options
         formated_message = cls.create_message(message, options)
         cls.logger.error(formated_message)
 
     @classmethod
-    def critical(cls, message, options=[Fore.RED, Style.BRIGHT]):
+    def critical(cls, message, options=None):
+        options = [Fore.RED, Style.BRIGHT] if options is None else options
         formated_message = cls.create_message(message, options)
         cls.logger.critical(formated_message)
 

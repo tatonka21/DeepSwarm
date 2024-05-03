@@ -218,7 +218,8 @@ class ACO:
 class Ant:
     """Class responsible for representing the ant."""
 
-    def __init__(self, path=[]):
+    def __init__(self, path=None):
+        path = [] if path is None else path
         self.path = path
         self.loss = math.inf
         self.accuracy = 0.0

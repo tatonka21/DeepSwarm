@@ -46,7 +46,7 @@ class DeepSwarm:
         best_model = self.storage.load_specified_model(self.backend, best_ant.path_hash)
         return best_model
 
-    def train_topology(self, model, epochs, augment={}):
+    def train_topology(self, model, epochs, augment=None):
         """Trains given neural network topology for a specified number of epochs.
 
         Args:
@@ -57,6 +57,7 @@ class DeepSwarm:
             network model in the format of backend which was used during
             initialization.
         """
+        augment = {} if augment is None else augment
 
         # Before training make a copy of old weights in case performance
         # degrades during the training

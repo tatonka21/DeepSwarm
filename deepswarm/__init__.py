@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 from shutil import copyfile
 from yaml import load, Loader
+import yaml
 
 
 # Create argument parser which allows users to pass a custom settings file name
@@ -52,7 +53,7 @@ if not settings_file_path.exists():
 
 # Read settings file
 with open(settings_file_path, 'r') as settings_file:
-    settings = load(settings_file, Loader=Loader)
+    settings = load(settings_file, Loader=yaml.SafeLoader)
 
 # Add script name to settings, so it's added to the log
 settings['script'] = os.path.basename(sys.argv[0])

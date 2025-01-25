@@ -2,9 +2,9 @@
 # Licensed under MIT License
 
 import copy
-import random
 
 from . import cfg, nodes
+import secrets
 
 
 class NodeAttribute:
@@ -104,7 +104,7 @@ class Node:
     def select_random_attributes(self):
         """Selects random attributes."""
 
-        self.select_attributes(lambda dict: random.choice(list(dict.keys())))
+        self.select_attributes(lambda dict: secrets.choice(list(dict.keys())))
 
     def create_deepcopy(self):
         """Returns a newly created copy of Node object."""

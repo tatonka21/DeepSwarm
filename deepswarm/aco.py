@@ -2,11 +2,11 @@
 # Licensed under MIT License
 
 import math
-import random
 
 from . import cfg, left_cost_is_better
 from .log import Log
 from .nodes import Node, NeighbourNode
+import secrets
 
 
 class ACO:
@@ -91,7 +91,7 @@ class ACO:
             a randomly selected neighbour node.
         """
 
-        current_node = random.choice(neighbours).node
+        current_node = secrets.choice(neighbours).node
         current_node.select_random_attributes()
         return current_node
 
@@ -134,20 +134,20 @@ class ACO:
             denominator += probability
 
         # Try to perform greedy select: exploitation
-        random_variable = random.uniform(0, 1)
+        random_variable = secrets.SystemRandom().uniform(0, 1)
         if random_variable <= cfg['aco']['greediness']:
             # Find max probability
             max_probability = max(probabilities)
             # Gather the indices of probabilities that are equal to the max probability
             max_indices = [i for i, j in enumerate(probabilities) if j == max_probability]
             # From those max indices select random index
-            neighbour_index = random.choice(max_indices)
+            neighbour_index = secrets.choice(max_indices)
             return neighbours[neighbour_index][0]
 
         # Otherwise perform select using roulette wheel: exploration
         probabilities = [x / denominator for x in probabilities]
         probability_sum = sum(probabilities)
-        random_treshold = random.uniform(0, probability_sum)
+        random_treshold = secrets.SystemRandom().uniform(0, probability_sum)
         current_value = 0
         for neighbour_index, probability in enumerate(probabilities):
             current_value += probability
